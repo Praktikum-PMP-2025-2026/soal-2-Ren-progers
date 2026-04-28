@@ -5,26 +5,27 @@ typedef struct data
 {
     char name[50];
 }invent;
-void input (invent *arr, int N){
+int main (){
+    int valid = 0;
+    int N, count = 0, k = 0;
+    char buffer[50], pref [10];
+    scanf ("%d", &N);
+    invent *arr = (invent*) malloc (N * sizeof(invent));
     for (int i = 0; i < N; i++){
         scanf ("%s", arr[i].name);
     }
-}
-void sort (invent *arr, int N, char* buffer){
+    scanf ("%s", pref);
     for (int i = 0; i < N; i++){
         for (int j = i+1; j < N; j++){
-            if (strcmp (arr[i].name, arr[j].name) == 1){
+            if (strcmp (arr[i].name, arr[j].name) > 0){
                 strcpy (buffer, arr[i].name);
                 strcpy (arr[i].name, arr[j].name);
                 strcpy (arr[j].name, buffer);
             }
         }
     }
-}
-void print (invent *arr, char* pref, int N){
-    int count = 0, k = 0, valid = 0;
     while (k < N && count < 3){
-        if (strncmp (arr[k].name, pref, strlen (pref)) > 0){
+        if (strncmp (arr[k].name, pref, strlen (pref)) == 0){
             count++;
             valid = 1;
         }
@@ -41,22 +42,12 @@ void print (invent *arr, char* pref, int N){
         k++;
         valid = 0;
     }
+
     if (count == 0){
-            printf ("TIDAK ADA\n");
+        printf ("TIDAK ADA\n");
     }
     else {
-            printf ("\n");
+        printf ("\n");
     }
-}
-int main (){
-    int valid = 0;
-    int N, count = 0, k = 0;
-    char buffer[50], pref [10];
-    scanf ("%d", &N);
-    invent *arr = (invent*) malloc (N * sizeof(invent));
-    input (arr, N);
-    sort (arr, N, buffer);
-    scanf ("%s", pref);
-    print (arr, pref, N);
     return 0;
 }
