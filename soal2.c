@@ -7,57 +7,77 @@
  * 
  */
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
-typedef struct data
-{
-    char name[50];
-}invent;
-int main (){
-    int valid = 0;
-    int N, count = 0, k = 0;
-    char buffer[50], pref [10];
-    scanf ("%d", &N);
-    invent *arr = (invent*) malloc (N * sizeof(invent));
-    for (int i = 0; i < N; i++){
-        scanf ("%s", arr[i].name);
+#include <stdlib.h>
+
+typedef struct {
+    char nama[50];
+} inventori;
+
+void getInput(inventori *l, int N) {
+    for (int i = 0; i < N; i++) {
+        scanf("%s", l[i].nama);
     }
-    scanf ("%s", pref);
-    for (int i = 0; i < N; i++){
-        for (int j = i+1; j < N; j++){
-            if (strcmp (arr[i].name, arr[j].name) > 0){
-                strcpy (buffer, arr[i].name);
-                strcpy (arr[i].name, arr[j].name);
-                strcpy (arr[j].name, buffer);
+}
+
+void getSug(inventori *l, inventori *sug, int *idxSug, char *prefix, int N) {
+    *idxSug = 0;
+    for (int i = 0; i < N; i++) {
+        if (strncmp(prefix, l[i].nama, 2) == 0) {
+            sug[*idxSug] = l[i];
+            *idxSug = *idxSug + 1;
+        }
+    }
+}
+
+void sorting(inventori *l, int N) {
+    for (int j = 0; j < N - 1; j++) {
+        for (int i = 0; i < N - 1; i++) {
+            if (strcmp(l[i].nama, l[i + 1].nama) > 0) {
+                inventori temp = l[i];
+                l[i] = l[i + 1];
+                l[i + 1] = temp;
             }
         }
     }
-    while (k < N && count < 3){
-        if (strncmp (arr[k].name, pref, strlen (pref)) == 0){
-            count++;
-            valid = 1;
-        }
-        if (count == 1 && valid == 1){
-            printf ("SUGGESTION ");
-            printf ("%s ", arr[k].name);
-        }
-        else if (count == 3 && valid == 1) {
-            printf ("%s", arr[k].name);
-        }
-        else if (count != 0  && valid ==1){
-            printf ("%s ", arr[k].name);
-        }
-        k++;
-        valid = 0;
-    }
+}
 
-    if (count == 0){
-        printf ("TIDAK ADA\n");
+void display(inventori *l, int N) {
+    if (N > 0) {
+        printf("SUGGESTION ");
+        for(int i = 0; i < N && i < 3; i++) {
+            printf("%s", l[i].nama);
+            if (i < N - 1 && i < 2) printf(" ");
+        }
     }
     else {
-        printf ("\n");
+        printf("TIDAK ADA");
     }
-    free (arr);
+
+}
+
+int main() {
+    int N = 0;
+    int idxsug = 0;
+    scanf("%d", &N);
+
+    inventori *myData = (inventori*) malloc(N * sizeof(inventori));
+    inventori *myDataSug = (inventori*) malloc(N * sizeof(inventori));
+
+    getInput(myData, N);
+
+    // for (int i = 0; i < N; i++) {
+    //     printf("%s ", myData[i]);
+    // }
+
+    char prefix[50];
+    scanf("%s", prefix);
+
+    getSug(myData, myDataSug, &idxsug, prefix, N);
+    sorting(myDataSug, idxsug);
+
+    display(myDataSug, idxsug);
+
     return 0;
 }
 
