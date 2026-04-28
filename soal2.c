@@ -6,6 +6,7 @@ typedef struct data
     char name[50];
 }invent;
 int main (){
+    int valid = 0;
     int N, count = 0, k = 0;
     char buffer[50], pref [10];
     scanf ("%d", &N);
@@ -23,21 +24,23 @@ int main (){
             }
         }
     }
-    while (k < N && count != 3){
+    while (k < N && count < 3){
         if (strncmp (arr[k].name, pref, strlen (pref)) == 0){
             count++;
+            valid = 1;
         }
-        if (count == 1){
+        if (count == 1 && valid == 1){
             printf ("SUGGESTION ");
             printf ("%s ", arr[k].name);
         }
-        else if (count == 3) {
+        else if (count == 3 && valid == 1) {
             printf ("%s", arr[k].name);
         }
-        else if (count != 0){
+        else if (count != 0  && valid ==1){
             printf ("%s ", arr[k].name);
         }
         k++;
+        valid = 0;
     }
     if (count == 0){
         printf ("TIDAK ADA\n");
@@ -45,6 +48,5 @@ int main (){
     else {
         printf ("\n");
     }
-    
     return 0;
 }
