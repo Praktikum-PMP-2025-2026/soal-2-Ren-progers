@@ -57,5 +57,7 @@ int main (){
     else {
         printf ("\n");
     }
+    free (arr);
     return 0;
 }
+
