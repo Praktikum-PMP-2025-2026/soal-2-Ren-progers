@@ -24,7 +24,7 @@ void sort (invent *arr, int N, char* buffer){
 void print (invent *arr, char* pref, int N){
     int count = 0, k = 0, valid = 0;
     while (k < N && count < 3){
-        if (strncmp (arr[k].name, pref, strlen (pref)) == 0){
+        if (strncmp (arr[k].name, pref, strlen (pref)) > 0){
             count++;
             valid = 1;
         }
