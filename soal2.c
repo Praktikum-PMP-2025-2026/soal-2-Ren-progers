@@ -1,3 +1,11 @@
+/** EL2008 Praktikum Pemecahan Masalah dengan Pemrograman 2024/2025
+ *   Modul               : 3 - Dynamic Array and Structure
+ *   Hari dan Tanggal    : Selasa, 28 April 2026
+ *   Nama (NIM)          : Akursio Kidung Gamel (13224051)
+ *   Nama File           : soal2.c
+ *   Deskripsi           : Mengurutkan inventori, lalu print nama barang dengan prefix sesuai inputan user, maksimum 3. Jika tidak ada, print TIDAK ADA
+ * 
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
