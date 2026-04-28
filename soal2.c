@@ -49,5 +49,8 @@ int main (){
     if (count == 0){
         printf ("TIDAK ADA\n");
     }
+    else {
+        printf ("\n");
+    }
     return 0;
 }
