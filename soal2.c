@@ -24,9 +24,6 @@ int main (){
             }
         }
     }
-    for (int i = 0; i < N; i++){
-        printf ("%s\n", arr[i].name);
-    }
     while (k < N && count < 3){
         if (strncmp (arr[k].name, pref, strlen (pref)) == 0){
             count++;
