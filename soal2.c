@@ -32,7 +32,7 @@ int main (){
             printf ("%s ", arr[k].name);
         }
         else if (count == 3) {
-            printf ("%s\n", arr[k].name);
+            printf ("%s", arr[k].name);
         }
         else if (count != 0){
             printf ("%s ", arr[k].name);
@@ -42,6 +42,8 @@ int main (){
     if (count == 0){
         printf ("TIDAK ADA\n");
     }
-    
+    else {
+        printf ("\n");
+    }
     return 0;
 }
