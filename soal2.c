@@ -23,7 +23,7 @@ void getInput(inventori *l, int N) {
 void getSug(inventori *l, inventori *sug, int *idxSug, char *prefix, int N) {
     *idxSug = 0;
     for (int i = 0; i < N; i++) {
-        if (strncmp(prefix, l[i].nama, 2) == 0) {
+        if (strncmp(prefix, l[i].nama, strlen (prefix)) == 0) {
             sug[*idxSug] = l[i];
             *idxSug = *idxSug + 1;
         }
