@@ -17,7 +17,7 @@ int main (){
     scanf ("%s", pref);
     for (int i = 0; i < N; i++){
         for (int j = i+1; j < N; j++){
-            if (strcmp (arr[i].name, arr[j].name) == 1){
+            if (strcmp (arr[i].name, arr[j].name) > 0){
                 strcpy (buffer, arr[i].name);
                 strcpy (arr[i].name, arr[j].name);
                 strcpy (arr[j].name, buffer);
